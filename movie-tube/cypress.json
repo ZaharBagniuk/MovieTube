@@ -1,0 +1,7 @@
+{
+  "component": {
+    "testFiles": "**/*.spec.{js,jsx,ts,tsx}",
+    "componentFolder": "src"
+  },
+  "video": false
+}
