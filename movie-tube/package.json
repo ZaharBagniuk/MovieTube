@@ -35,8 +35,7 @@
   "scripts": {
     "start": "react-scripts start",
     "test-e2e": "npx cypress run",
-    "test-ui": "npx cypress run-ct",
-    "full-test": "npm run test-ui && npm run test-e2e"
+    "test-ui": "npx cypress run-ct"
   },
   "eslintConfig": {
     "extends": [

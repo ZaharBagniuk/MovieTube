@@ -1,70 +1,57 @@
-# Getting Started with Create React App
+# Getting Started with Movie Tube App
+MovieTube is a fast movies search platform that provides a user with the functionality to
+search through the [The Movie DB](https://www.themoviedb.org/) service database. 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+While visiting dashboard page(w/o any parameters in the URL), a user can see a list of top-rated movies.
 
-## Available Scripts
+The cards with movies are interactive on mouse over, so a user can just hover over the specific 
+movie-card and see its overview.
 
-In the project directory, you can run:
+If a user is interested in particular movie then by clicking on
+movie-card the corresponding movie page is opened. There he can look at the `poster`, `average rating`,
+`movie genres`, `release date` and `overview`.
 
-### `npm start`
+To search for specific movie a user can type a specific movie title and
+then either submit the search form with all results that match the search term or
+select desired movie from the search-bar results. When a user types in a search term,
+then a list of movies that match the search criteria is shown. Each of these items has
+a poster icon, title, average rating and overview to make a user choice and life easier.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+On every user-step it's possible to search for another movie/movies using the search bar or
+return to the main page top-rated movies by clicking on `Home` button.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Pre-config
 
-### `npm test`
+In the project directory, you need to run below commands:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. ### `npm install`
+2. ### `npm start`
 
-### `npm run build`
+This runs the app in the development mode.
+The app can be accessed via:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+[http://localhost:3000](http://localhost:3000)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The page will reload when you make changes.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Run UI component tests
+### `npm run test-ui`
+Launches [Cypress component testing](https://docs.cypress.io/guides/component-testing/introduction).
 
-### `npm run eject`
+## Run End-2-End tests
+### `npm run test-e2e`
+Launches [Cypress E2E testing](https://www.cypress.io/).
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Used core dependencies
+* [Typescript](https://www.typescriptlang.org/)
+* [React Router v6](https://reactrouter.com/docs/en/v6/getting-started/overview)
+* [Cypress](https://www.cypress.io/)
+* [Redux](https://redux.js.org/)
+* [Redux-Thunk](https://github.com/reduxjs/redux-thunk)
+* [Axios](https://github.com/axios/axios)
+* [Styled-components](https://styled-components.com/)
+* [Material UI](https://mui.com/)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## API documentation
+* [The Movie DB](https://developers.themoviedb.org/3)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
