@@ -43,6 +43,10 @@ Launches [Cypress component testing](https://docs.cypress.io/guides/component-te
 Launches [Cypress E2E testing](https://www.cypress.io/).
 To run these tests you need your server to be up and running.
 
+If Cypress prompts you to verify it, then please use the following command:
+
+`npx cypress verify`
+
 ## Used core dependencies
 * [Typescript](https://www.typescriptlang.org/)
 * [React Router v6](https://reactrouter.com/docs/en/v6/getting-started/overview)
