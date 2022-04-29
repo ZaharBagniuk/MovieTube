@@ -8,15 +8,6 @@ describe('Movies List', () => {
         cy.get('[data-testid="resultsHeader"]').should('have.text', 'Most Rated of All Time');
     });
 
-    it('Selects movie from search bar', () => {
-        cy.visit(localHost);
-        cy.get('[data-testid="searchInputs"] [data-testid="input"]').type(query);
-        cy.get('[data-testid="dataResult"]').find('[data-testid="dataItem"]').should('have.length', 20);
-        cy.get('[data-testid="dataResult"] [data-testid="dataItem"]:first-child').click();
-        cy.url().should('include', `${localHost}movie/`);
-        cy.get('[data-testid="generalInfoContainer"] [data-testid="detailsSection"] [data-testid="Title"]').should('exist');
-    });
-
     it('Redirects back to the dashboard from selected movie', () => {
         cy.visit(localHost);
         cy.get('[data-testid="searchInputs"] [data-testid="input"]').type(query);

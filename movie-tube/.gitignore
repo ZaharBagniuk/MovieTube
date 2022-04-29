@@ -1,8 +1,3 @@
 /node_modules
-cypress/fixtures/
-cypress/videos/
-cypress/screenshots/
-cypress/reports/
-cypress/support/
 .idea/
 
