@@ -1,32 +1,21 @@
 export interface Movie {
-    etag: string,
-    id: Id,
-    kind: string,
-    snippet: Snippet
-}
-
-type Id = {
-    kind: string,
-    videoId: string
-}
-
-type Snippet = {
-    channelId: string,
-    channelTitle: string,
-    description: string,
-    liveBroadcastContent: string,
-    publishTime: string,
-    publishedAt: string,
+    adult: boolean,
+    backdrop_path: string,
+    genre_ids: Array<string>,
+    id: number,
+    original_language: string,
+    original_title: string,
+    overview: string,
+    popularity: number,
+    poster_path: string,
+    release_date: string,
     title: string,
-    thumbnails: {
-        default: Thumbnail,
-        high: Thumbnail,
-        medium: Thumbnail
-    }
+    video: boolean,
+    vote_average: number,
+    vote_count: number
 }
 
-type Thumbnail = {
-    height: number,
-    width: number,
-    url: string
+export interface Genre {
+    id: number,
+    name: string
 }

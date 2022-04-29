@@ -1,31 +1,49 @@
 import * as React from 'react';
-import {connect} from 'react-redux';
-import MovieItem from './MovieItem';
-import {Movie} from "../../reducers/types";
+import {useContext, useEffect, useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {ThunkDispatch} from "@reduxjs/toolkit";
+import {fetchTopRatedMovies, MoviesActions, searchForMoviesBySelectedQuery} from "../../actions/movies";
+import Movie from "./Movie";
+import MoviesListWrapper from "./MoviesListWrapper";
+import {useSearchParams} from "react-router-dom";
+import LoadingContext from "../common/LoadingContext";
+import ResultsHeader from "./ResultsHeader";
 
-interface MoviesListProps {
-    movies: Array<Movie>
-}
+const MoviesList = () => {
+    const [searchParams] = useSearchParams();
+    const searchTerm = searchParams.get('query');
+    const movies = useSelector(({movies}) => movies.movies.selectedMovies) || [];
+    const dispatch: ThunkDispatch<{}, {}, MoviesActions> = useDispatch();
+    const { showLoading, hideLoading } = useContext(LoadingContext);
 
-const MoviesList = ({ movies }: MoviesListProps) => {
+    useEffect(() => {
+        const onTradingSearch = async () => {
+            await dispatch(fetchTopRatedMovies());
+        };
+
+        const onMoviesSearch = async query => {
+            await dispatch(searchForMoviesBySelectedQuery(query));
+        };
+
+        if (!searchTerm) {
+            showLoading();
+            onTradingSearch().then(hideLoading);
+        } else {
+            showLoading();
+            onMoviesSearch(searchTerm).then(hideLoading);
+        }
+    }, [searchTerm]);
+
     return (
-        <div className="ui relaxed divided list">
-            {
-                movies.map((movie: Movie) => {
-                    return (
-                        <MovieItem
-                            key={movie.id.videoId}
-                            movie={movie}
-                        />
-                    );
-                })
-            }
-        </div>
+        <>
+            <ResultsHeader />
+            <MoviesListWrapper>
+                {!!movies.length && (
+                    movies.map(m => <Movie key={m.id} movie={m} />)
+                )}
+            </MoviesListWrapper>
+        </>
     );
 };
 
-const mapStateToProps = state => ({
-    movies: state.movies.movies.movies
-});
-
-export default connect(mapStateToProps)(MoviesList);
+export default MoviesList;
