@@ -5,7 +5,7 @@ import {useDispatch} from "react-redux";
 import SearchIcon from "@mui/icons-material/Search";
 import CloseIcon from "@mui/icons-material/Close";
 import StarIcon from '@mui/icons-material/Star';
-import {MoviesActions, searchForMovie, selectMovie} from "../../../actions/movies";
+import {MoviesActions, searchForMovie, selectMovie, setSelectedMoviesError} from "../../../actions/movies";
 import {ThunkDispatch} from "@reduxjs/toolkit";
 import SearchWrapper from "./SearchWrapper";
 import {Movie} from "../../../reducers/types";
@@ -37,7 +37,10 @@ const SearchBar = ({placeholder, movies}) => {
       setWordEntered(searchWord);
       if (searchWord) {
           setResultsLoading(true);
-          await dispatch(searchForMovie(searchWord)).then(() => setResultsLoading(false));
+          await dispatch(searchForMovie(searchWord))
+              .then(() => {
+                  setResultsLoading(false);
+              });
       }
 
       if (searchWord === "") {

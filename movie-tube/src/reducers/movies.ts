@@ -3,7 +3,8 @@ import {
     SEARCH_FOR_MOVIE,
     SEARCH_FOR_MOVIES, SEARCH_FOR_MOVIES_BY_QUERY,
     SEARCH_FOR_TOP_RATED_MOVIES,
-    SELECT_MOVIE
+    SELECT_MOVIE,
+    SEARCH_FOR_MOVIES_FAILED
 } from "../actions/constants";
 import {Genre, Movie} from "./types";
 
@@ -11,14 +12,16 @@ export interface State {
     movies: Array<Movie>,
     selectedMovies: Array<Movie>,
     selectedMovie: Movie,
-    genres: Array<Genre>
+    genres: Array<Genre>,
+    error: string
 }
 
 const INITIAL_STATE = {
     movies: [],
     selectedMovies: [],
     selectedMovie: null,
-    genres: []
+    genres: [],
+    error: ''
 };
 
 export default function (state: State = INITIAL_STATE, action) {
@@ -53,6 +56,11 @@ export default function (state: State = INITIAL_STATE, action) {
             return {
                 ...state,
                 selectedMovies: action?.selectedMovies
+            };
+        case SEARCH_FOR_MOVIES_FAILED:
+            return {
+                ...state,
+                error: action.error
             };
         default:
             return state;

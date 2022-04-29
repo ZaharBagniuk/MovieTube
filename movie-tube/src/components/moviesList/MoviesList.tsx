@@ -2,7 +2,12 @@ import * as React from 'react';
 import {useContext, useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {ThunkDispatch} from "@reduxjs/toolkit";
-import {fetchTopRatedMovies, MoviesActions, searchForMoviesBySelectedQuery} from "../../actions/movies";
+import {
+    fetchTopRatedMovies,
+    MoviesActions,
+    searchForMoviesBySelectedQuery,
+    setSelectedMoviesError
+} from "../../actions/movies";
 import Movie from "./Movie";
 import MoviesListWrapper from "./MoviesListWrapper";
 import {useSearchParams} from "react-router-dom";
