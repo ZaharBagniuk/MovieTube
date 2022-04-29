@@ -41,6 +41,7 @@ Launches [Cypress component testing](https://docs.cypress.io/guides/component-te
 ## Run End-2-End tests
 ### `npm run test-e2e`
 Launches [Cypress E2E testing](https://www.cypress.io/).
+To run these tests you need your server to be up and running.
 
 ## Used core dependencies
 * [Typescript](https://www.typescriptlang.org/)

@@ -14,6 +14,7 @@ describe('Movies List', () => {
     it('Redirects back to the dashboard from selected movie', () => {
         cy.visit(localHost);
         cy.get('[data-testid="searchInputs"] [data-testid="input"]').type(query);
+        cy.wait(1000);
         cy.get('[data-testid="dataResult"] [data-testid="dataItem"]:first-child').click();
         cy.url().should('include', `${localHost}movie/`);
         cy.get('[data-testid="HomeBtn"]').click();
