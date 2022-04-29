@@ -158,16 +158,12 @@ export function searchForMoviesBySelectedQuery(query: string): ThunkAction<Promi
     }
 }
 
-export const selectMovie = (selectedMovie: Movie): MoviesSelectAction => {
-  return {
-      type: SELECT_MOVIE,
-      selectedMovie
-  };
-};
+export const selectMovie = (selectedMovie: Movie): MoviesSelectAction => ({
+    type: SELECT_MOVIE,
+    selectedMovie
+});
 
-export const setSelectedMoviesError = (error: string | ''):MoviesActions  => {
-    return {
-        type: SEARCH_FOR_MOVIES_FAILED,
-        error
-    };
-};
+export const setSelectedMoviesError = (error: string): MoviesActions  => ({
+    type: SEARCH_FOR_MOVIES_FAILED,
+    error
+});

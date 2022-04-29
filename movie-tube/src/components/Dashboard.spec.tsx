@@ -42,8 +42,6 @@ describe('Dashboard component test', () => {
         cy.get(sel.error).should('exist');
         cy.get(sel.errorMsg).should('have.text', error);
     });
-
-
 });
 
 const getStore = (params) => {

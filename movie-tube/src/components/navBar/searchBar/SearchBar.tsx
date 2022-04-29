@@ -11,6 +11,7 @@ import {Movie} from "../../../reducers/types";
 import {sortBy} from 'lodash';
 import {Link, useNavigate} from "react-router-dom";
 import {Box, CircularProgress} from "@mui/material";
+import SearchResults from "./SearchResults";
 
 const SearchBar = ({placeholder, movies}) => {
     const inputEl = useRef(null);
@@ -18,7 +19,6 @@ const SearchBar = ({placeholder, movies}) => {
     const [areResultsLoading, setResultsLoading] = useState(false);
     const [wordEntered, setWordEntered] = useState('');
     const navigate = useNavigate();
-
     const dispatch: ThunkDispatch<{}, {}, MoviesActions> = useDispatch();
 
     const sortedMovies = useMemo(() => {
@@ -105,26 +105,7 @@ const SearchBar = ({placeholder, movies}) => {
                                     <CircularProgress />
                                 </Box>
                             </span> :
-                            sortedMovies.map((value: Movie) => {
-                                const releaseYear = new Date(value.release_date).getFullYear();
-                                const {overview} = value;
-                                const detailsStr = `${releaseYear || ''}${formDetail(overview)}`;
-                                return (
-                                    <Link to={`/movie/${value.id}`} key={value.id} data-testid="dataItem" className="dataItem" onClick={() => onResultClicked(value)}>
-                                        <img src={`http://image.tmdb.org/t/p/w200/${value.poster_path}`} alt='Not found' />
-                                        <span className="detailsWrapper">
-                                        <span className="generalInfo" title={value.title}>
-                                            <span className="title">{`${value.title}`}</span>
-                                            <span className="voteRate">
-                                                <StarIcon />
-                                                <span className="value">{value.vote_average}</span>
-                                            </span>
-                                        </span>
-                                        <em title={detailsStr} className="details">{detailsStr}</em>
-                                    </span>
-                                    </Link>
-                                );
-                            })
+                            sortedMovies.map((value: Movie) => <SearchResults value={value} onResultClicked={onResultClicked} />)
                         }
                     </div>
                 )
@@ -137,10 +118,6 @@ const mapStateToProps = state => {
     return {
         movies: state.movies.movies.movies
     };
-};
-
-const formDetail = (field: string | undefined) => {
-    return field ? `, ${field}`: '';
 };
 
 export const getSortedResultsByVoteAverage = (results: Array<Movie>) => {

@@ -12,12 +12,10 @@ const SelectedMovie = () => {
     const dispatch: ThunkDispatch<{}, {}, MoviesActions> = useDispatch();
     const [movieGenres, setMovieGenres] = useState([]);
     const params = useParams();
-    const {selectedMovie, genres} = useSelector(({movies}) => {
-        return {
-          selectedMovie: movies.movies.selectedMovie,
-          genres: movies.movies.genres
-        };
-    });
+    const {selectedMovie, genres} = useSelector(({movies}) => ({
+        selectedMovie: movies.movies.selectedMovie,
+        genres: movies.movies.genres
+    }));
     const { showLoading, hideLoading } = useContext(LoadingContext);
 
     useEffect(() => {

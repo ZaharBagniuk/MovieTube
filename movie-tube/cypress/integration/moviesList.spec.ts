@@ -4,8 +4,11 @@ const query = 'Spy';
 describe('Movies List', () => {
     it('Visits the dashboard and shows top-rated results', () => {
         cy.visit(localHost);
-        cy.get('[data-testid="MoviesList"]').find('[data-testid="MovieCard"]').should('have.length', 20);
-        cy.get('[data-testid="resultsHeader"]').should('have.text', 'Most Rated of All Time');
+        cy.get('[data-testid="MoviesList"]')
+            .find('[data-testid="MovieCard"]')
+            .should('have.length', 20);
+        cy.get('[data-testid="resultsHeader"]')
+            .should('have.text', 'Most Rated of All Time');
     });
 
     it('Redirects back to the dashboard from selected movie', () => {
@@ -23,22 +26,30 @@ describe('Movies List', () => {
         cy.get('[data-testid="SearchBar"] [data-testid="searchBarForm"]').submit();
 
         cy.url().should('eq', `${localHost}?query=${query}`);
-        cy.get('[data-testid="MoviesList"]').find('[data-testid="MovieCard"]').should('have.length', 20);
-        cy.get('[data-testid="resultsHeader"]').should('have.text', `Movies results for: ${query}`);
+        cy.get('[data-testid="MoviesList"]')
+            .find('[data-testid="MovieCard"]')
+            .should('have.length', 20);
+        cy.get('[data-testid="resultsHeader"]')
+            .should('have.text', `Movies results for: ${query}`);
 
         cy.get('[data-testid="HomeBtn"]').click();
         cy.url().should('eq', localHost);
-        cy.get('[data-testid="resultsHeader"]').should('have.text', 'Most Rated of All Time');
+        cy.get('[data-testid="resultsHeader"]')
+            .should('have.text', 'Most Rated of All Time');
     });
 
     it('Allows to visit movies page by direct link', () => {
         cy.visit(`${localHost}?query=${query}`);
-        cy.get('[data-testid="MoviesList"]').find('[data-testid="MovieCard"]').should('have.length', 20);
-        cy.get('[data-testid="resultsHeader"]').should('have.text', `Movies results for: ${query}`);
+        cy.get('[data-testid="MoviesList"]')
+            .find('[data-testid="MovieCard"]')
+            .should('have.length', 20);
+        cy.get('[data-testid="resultsHeader"]')
+            .should('have.text', `Movies results for: ${query}`);
     });
 
     it('Allows to visit specific movie page by direct link', () => {
         cy.visit(`${localHost}movie/2`);
-        cy.get('[data-testid="generalInfoContainer"] [data-testid="detailsSection"] [data-testid="Title"]').should('exist');
+        cy.get('[data-testid="generalInfoContainer"] [data-testid="detailsSection"] [data-testid="Title"]')
+            .should('exist');
     });
 });

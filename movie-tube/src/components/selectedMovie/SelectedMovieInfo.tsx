@@ -8,19 +8,24 @@ const IMAGE_GENERAL_PATH = 'https://image.tmdb.org/t/p/w500';
 const SelectedMovieInfo = ({selectedMovie, movieGenres}) => {
     const formattedGenres = movieGenres.map(i => i.name).join(', ');
     const formattedRate = calcRate(selectedMovie.vote_average);
+    const formattedDate = new Date(selectedMovie.release_date)
+        .toLocaleString('default', {day: 'numeric', month: 'long', year: 'numeric'});
 
     return (
         <div data-testid="SelectedMovieInfo" className="container">
-            {selectedMovie?.backdrop_path && <div className="backgroundWrapper" style={{backgroundImage: `url(${IMAGE_GENERAL_PATH + selectedMovie.backdrop_path})`}} />}
+            {
+                selectedMovie?.backdrop_path &&
+                <div className="backgroundWrapper"
+                     style={{backgroundImage: `url(${IMAGE_GENERAL_PATH + selectedMovie.backdrop_path})`}}
+                />
+            }
             <div className="mainInfo">
                 <img src={IMAGE_GENERAL_PATH + selectedMovie.poster_path} alt="Not Found" />
                 <div data-testid="generalInfoContainer" className="generalInfoContainer">
                     <section data-testid="detailsSection" className="detailsSection">
                         <h1 className="title" data-testid="Title">{selectedMovie.title}</h1>
                         <span data-testid="secondaryInfo" className="secondaryInfo">
-                                <em className="releaseYear" data-testid="ReleaseYear">
-                                    {new Date(selectedMovie.release_date).toLocaleString('default', {day: 'numeric', month: 'long', year: 'numeric'})}
-                                </em>
+                                <em className="releaseYear" data-testid="ReleaseYear">{formattedDate}</em>
                                 <span className="genres" data-testid="Genres" title={formattedGenres}>{formattedGenres}</span>
                         </span>
                         <span className="voteRate" title={formattedRate.toString()} data-testid="VoteRate">

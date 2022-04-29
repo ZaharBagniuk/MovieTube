@@ -8,7 +8,7 @@ import MoviesListWrapper from "./MoviesListWrapper";
 import {useSearchParams} from "react-router-dom";
 import LoadingContext from "../common/LoadingContext";
 import ResultsHeader from "./ResultsHeader";
-import {Alert, AlertTitle} from "@mui/material";
+import {Alert} from "@mui/material";
 
 const MoviesList = () => {
     const [searchParams] = useSearchParams();
