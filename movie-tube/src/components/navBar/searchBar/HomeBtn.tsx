@@ -5,7 +5,7 @@ import {Link} from "react-router-dom";
 
 const HomeBtn = () => {
     return (
-        <Link to='/'>
+        <Link to='/' data-testid="HomeBtn">
             <IconButton aria-label="delete" size="large">
                 <HomeIcon fontSize="inherit" />
             </IconButton>

@@ -1,16 +1,15 @@
 import * as React from 'react';
-import {useState, useMemo, useEffect, useRef} from "react";
-import {connect} from 'react-redux';
-import {useDispatch} from "react-redux";
+import {useEffect, useMemo, useRef, useState} from 'react';
+import {connect, useDispatch} from 'react-redux';
 import SearchIcon from "@mui/icons-material/Search";
 import CloseIcon from "@mui/icons-material/Close";
 import StarIcon from '@mui/icons-material/Star';
-import {MoviesActions, searchForMovie, selectMovie, setSelectedMoviesError} from "../../../actions/movies";
+import {MoviesActions, searchForMovie, selectMovie} from "../../../actions/movies";
 import {ThunkDispatch} from "@reduxjs/toolkit";
 import SearchWrapper from "./SearchWrapper";
 import {Movie} from "../../../reducers/types";
 import {sortBy} from 'lodash';
-import {Link, useSearchParams} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {Box, CircularProgress} from "@mui/material";
 
 const SearchBar = ({placeholder, movies}) => {
@@ -18,7 +17,7 @@ const SearchBar = ({placeholder, movies}) => {
     const [filteredData, setFilteredData] = useState([]);
     const [areResultsLoading, setResultsLoading] = useState(false);
     const [wordEntered, setWordEntered] = useState('');
-    const [searchParams, setSearchParams] = useSearchParams();
+    const navigate = useNavigate();
 
     const dispatch: ThunkDispatch<{}, {}, MoviesActions> = useDispatch();
 
@@ -50,11 +49,8 @@ const SearchBar = ({placeholder, movies}) => {
 
     const handleSubmit = e => {
         e.preventDefault();
-        if (filteredData.length) {
-            searchParams.set('query', wordEntered);
-            setSearchParams(searchParams);
-            clearDataAndCloseResults();
-        }
+        navigate(`/?query=${wordEntered}`, { replace: true });
+        clearDataAndCloseResults();
     };
 
     const handleOutsideClick = e => {
@@ -80,10 +76,11 @@ const SearchBar = ({placeholder, movies}) => {
     }
 
     return (
-        <SearchWrapper ref={inputEl}>
-            <form onSubmit={handleSubmit}>
-                <div className="searchInputs">
+        <SearchWrapper ref={inputEl} data-testid="SearchBar">
+            <form data-testid="searchBarForm" onSubmit={handleSubmit}>
+                <div data-testid="searchInputs" className="searchInputs">
                     <input
+                        data-testid="input"
                         type="text"
                         value={wordEntered}
                         placeholder={placeholder}
@@ -101,17 +98,19 @@ const SearchBar = ({placeholder, movies}) => {
             </form>
             {
                 !!filteredData.length && (
-                    <div className="dataResult">
+                    <div data-testid="dataResult" className="dataResult">
                         {areResultsLoading ?
-                            <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: '30px' }}>
-                                <CircularProgress />
-                            </Box> :
+                            <span data-testid="SearchBarLoader">
+                                <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: '30px' }}>
+                                    <CircularProgress />
+                                </Box>
+                            </span> :
                             sortedMovies.map((value: Movie) => {
                                 const releaseYear = new Date(value.release_date).getFullYear();
                                 const {overview} = value;
                                 const detailsStr = `${releaseYear || ''}${formDetail(overview)}`;
                                 return (
-                                    <Link to={`/movie/${value.id}`} key={value.id} className="dataItem" onClick={() => onResultClicked(value)}>
+                                    <Link to={`/movie/${value.id}`} key={value.id} data-testid="dataItem" className="dataItem" onClick={() => onResultClicked(value)}>
                                         <img src={`http://image.tmdb.org/t/p/w200/${value.poster_path}`} alt='Not found' />
                                         <span className="detailsWrapper">
                                         <span className="generalInfo" title={value.title}>

@@ -9,6 +9,7 @@
     "target": "es5"
   },
   "include": [
-    "src/**/*.tsx"
+    "src/**/*.tsx",
+    "cypress/integration/*.ts"
   ]
 }

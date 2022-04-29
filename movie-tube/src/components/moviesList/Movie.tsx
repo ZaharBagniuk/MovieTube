@@ -1,10 +1,12 @@
 import * as React from 'react';
-import {Card, CardActionArea, CardContent, CardMedia, Typography} from "@mui/material";
+import {CardContent, CardMedia, Typography} from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
 import {useDispatch} from "react-redux";
 import {selectMovie} from "../../actions/movies";
 import ReactCardFlipper from "react-card-flipper";
 import MovieCard from "./MovieCard";
+
+const IMG_SRC_ROOT = 'https://image.tmdb.org/t/p/w200';
 
 const Movie = ({movie}) => {
     const dispatch = useDispatch();
@@ -15,17 +17,19 @@ const Movie = ({movie}) => {
     };
 
     return (
-        <ReactCardFlipper
-            width="250px"
-            height="340px"
-            behavior="hover"
-        >
-            <div className="text-center">
+        <span data-testid="MovieCard">
+            <ReactCardFlipper
+                width="250px"
+                height="340px"
+                behavior="hover"
+                className={"MovieCard"}
+            >
+            <div className="text-center" data-testid="MovieCardFront">
                 <MovieCard id={id} onCardClicked={onCardClicked}>
                     <CardMedia
                         component="img"
                         height="330"
-                        src={'https://image.tmdb.org/t/p/w200' + poster_path}
+                        src={IMG_SRC_ROOT + poster_path}
                         alt="green iguana"
                     />
                     <CardContent className="CardContent">
@@ -38,14 +42,13 @@ const Movie = ({movie}) => {
                                      <StarIcon/>
                                      <span className="value">{vote_average}</span>
                                 </span>
-                                <span
-                                    className="releaseDate">{release_date ? new Date(release_date).getFullYear() : ''}</span>
+                                <span className="releaseDate">{release_date ? new Date(release_date).getFullYear() : ''}</span>
                             </span>
                         </Typography>
                     </CardContent>
                 </MovieCard>
             </div>
-            <div className="text-center">
+            <div className="text-center" data-testid="MovieCardBack">
                 <MovieCard id={id} onCardClicked={onCardClicked}>
                     <CardContent className="CardContent">
                         <Typography gutterBottom variant="h5" component="div">
@@ -58,6 +61,7 @@ const Movie = ({movie}) => {
                 </MovieCard>
             </div>
         </ReactCardFlipper>
+        </span>
     );
 };
 

@@ -10,16 +10,16 @@ import Error from "./common/Error";
 import {useSelector} from "react-redux";
 
 const MoviesRoutes = () => useRoutes([
-    {path: "/", element: <MoviesList/>},
-    {path: "/search", element: <MoviesList/>},
-    {path: "/movie/:id", element: <SelectedMovie/>}
+    {path: "/", element: <MoviesList />},
+    {path: "/search", element: <MoviesList />},
+    {path: "/movie/:id", element: <SelectedMovie />}
 ]);
 
 const Dashboard = () => {
     const error = useSelector(({movies}) => movies.movies.error);
 
     return (
-        <DashboardWrapper>
+        <DashboardWrapper data-testid="Dashboard">
             <LoadingProvider>
                 <NavBar/>
                 <Loader/>

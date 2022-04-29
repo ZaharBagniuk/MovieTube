@@ -6,7 +6,7 @@ const ResultsHeader = () => {
     const query = searchParams.get('query');
 
     return (
-        <div className="resultsHeader">
+        <div className="resultsHeader" data-testid="resultsHeader">
             <h1>
                 {query ? `Movies results for: ${query}` : 'Most Rated of All Time'}
             </h1>
