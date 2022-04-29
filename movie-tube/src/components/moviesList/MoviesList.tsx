@@ -33,7 +33,7 @@ const MoviesList = () => {
             showLoading();
             onMoviesSearch(searchTerm).then(hideLoading);
         }
-    }, [searchTerm]);
+    }, [searchTerm, dispatch, hideLoading, showLoading]);
 
     return (
         <span data-testid="MoviesList">

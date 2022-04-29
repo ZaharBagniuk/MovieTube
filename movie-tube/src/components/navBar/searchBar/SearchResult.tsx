@@ -2,14 +2,13 @@ import * as React from 'react';
 import StarIcon from "@mui/icons-material/Star";
 import {Link} from "react-router-dom";
 
-const SearchResults = ({value, onResultClicked}) => {
+const SearchResult = ({value, onResultClicked}) => {
     const releaseYear = new Date(value.release_date).getFullYear();
     const {overview} = value;
     const detailsStr = `${releaseYear || ''}${formDetail(overview)}`;
 
     return (
         <Link to={`/movie/${value.id}`}
-              key={value.id}
               data-testid="dataItem"
               className="dataItem"
               onClick={() => onResultClicked(value)}
@@ -33,4 +32,4 @@ const formDetail = (field: string | undefined) => {
     return field ? `, ${field}`: '';
 };
 
-export default SearchResults;
+export default SearchResult;

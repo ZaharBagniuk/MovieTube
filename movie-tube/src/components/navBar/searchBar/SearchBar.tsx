@@ -10,7 +10,7 @@ import {Movie} from "../../../reducers/types";
 import {sortBy} from 'lodash';
 import {useNavigate} from "react-router-dom";
 import {Box, CircularProgress} from "@mui/material";
-import SearchResults from "./SearchResults";
+import SearchResult from "./SearchResult";
 
 const SearchBar = ({placeholder, movies}) => {
     const inputEl = useRef(null);
@@ -28,7 +28,7 @@ const SearchBar = ({placeholder, movies}) => {
         if (wordEntered) {
             setFilteredData(movies);
         }
-    }, [movies]);
+    }, [movies, wordEntered]);
 
     const handleFilter = async event => {
       const searchWord = event.target.value;
@@ -104,7 +104,9 @@ const SearchBar = ({placeholder, movies}) => {
                                     <CircularProgress />
                                 </Box>
                             </span> :
-                            sortedMovies.map((value: Movie) => <SearchResults value={value} onResultClicked={onResultClicked} />)
+                            sortedMovies.map((value: Movie) => (
+                                <SearchResult key={value.id} value={value} onResultClicked={onResultClicked} />
+                            ))
                         }
                     </div>
                 )

@@ -27,7 +27,7 @@ const SelectedMovie = () => {
             showLoading();
             fetchMovie().then(hideLoading);
         }
-    }, []);
+    }, [hideLoading, showLoading, dispatch, params, selectedMovie]);
 
     useEffect(() => {
         const fetchAllGenres = async () => {
@@ -37,7 +37,7 @@ const SelectedMovie = () => {
             showLoading();
             fetchAllGenres().then(hideLoading);
         }
-    }, [selectedMovie]);
+    }, [selectedMovie, dispatch, hideLoading, showLoading]);
 
     useEffect(() => {
         if (genres.length && selectedMovie && selectedMovie.genre_ids) {
