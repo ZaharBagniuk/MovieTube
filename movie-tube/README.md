@@ -1,5 +1,5 @@
 # Getting Started with Movie Tube App
-MovieTube is a fast movies search platform that provides a user with the functionality to
+MovieTube is a fast movies search engine that provides a user with the functionality to
 search through the [The Movie DB](https://www.themoviedb.org/) service database. 
 
 While visiting dashboard page(w/o any parameters in the URL), a user can see a list of top-rated movies.
