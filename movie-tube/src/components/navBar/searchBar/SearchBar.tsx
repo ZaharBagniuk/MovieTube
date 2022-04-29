@@ -3,13 +3,12 @@ import {useEffect, useMemo, useRef, useState} from 'react';
 import {connect, useDispatch} from 'react-redux';
 import SearchIcon from "@mui/icons-material/Search";
 import CloseIcon from "@mui/icons-material/Close";
-import StarIcon from '@mui/icons-material/Star';
 import {MoviesActions, searchForMovie, selectMovie} from "../../../actions/movies";
 import {ThunkDispatch} from "@reduxjs/toolkit";
 import SearchWrapper from "./SearchWrapper";
 import {Movie} from "../../../reducers/types";
 import {sortBy} from 'lodash';
-import {Link, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {Box, CircularProgress} from "@mui/material";
 import SearchResults from "./SearchResults";
 

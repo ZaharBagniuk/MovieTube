@@ -25,7 +25,7 @@ const INITIAL_STATE = {
     error: ''
 };
 
-export default function (state: State = INITIAL_STATE, action) {
+export default function moviesReducer(state: State = INITIAL_STATE, action) {
     switch (action.type) {
         case SEARCH_FOR_MOVIES:
             const movies = Array.isArray(action?.movies) ? action.movies : [];
